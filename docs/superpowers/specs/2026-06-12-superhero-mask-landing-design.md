@@ -1,63 +1,97 @@
 ---
 name: superhero-mask-landing
-description: Landing page showcase bộ sưu tập mặt nạ siêu nhân 5 màu với 3D viewer — Next.js 16 + Tailwind CSS + Three.js
+description: Landing page showcase mặt nạ siêu nhân 5 màu — Next.js 16, Tailwind CSS, React Three Fiber, dựa trên Design System Mặt Nạ Siêu Nhân
 metadata:
   type: project
 ---
 
-# Superhero Mask Landing Page — Design Spec
+# Superhero Mask Landing Page — Design Spec (v2)
 
 ## Mục đích
-Showcase / trưng bày bộ sưu tập 5 mặt nạ siêu nhân. Không có chức năng mua hàng. Mục tiêu tạo ấn tượng mạnh qua dark theme và 3D viewer tương tác.
+Showcase / trưng bày bộ sưu tập 5 mặt nạ siêu nhân. Không có chức năng mua hàng. Tạo ấn tượng mạnh qua dark theme HUD tokusatsu và 3D viewer tương tác.
 
 ## Tech Stack
 - **Next.js 16** (App Router)
-- **Tailwind CSS** — styling
+- **Tailwind CSS** — layout & spacing utilities
+- **CSS Variables** từ Design System (token-based, không dùng Tailwind cho màu/font/effect)
 - **Framer Motion** — scroll reveal animation
 - **React Three Fiber + @react-three/drei** — 3D mask viewer
-- **Three.js** (qua React Three Fiber)
+- **Lucide React** — icons
 
-## Tone & Style
-- Dark theme: background gradient `#0a0a0a → #1a0a2e`
-- Neon glow theo màu từng mặt nạ
-- Typography: bold, dramatic (font sans-serif nặng)
-- Hiệu ứng: scroll reveal, hover glow, 3D model xoay
+## Design System
 
-## Cấu trúc trang (Single Page Scroll)
+Design system gốc tại: `design-system/` (copy từ thư mục Downloads vào repo).
 
-### 1. Hero Section
-- Full-viewport height
-- Background dark gradient + subtle glow ở trung tâm
-- Tiêu đề lớn: **"SUPERHERO MASK COLLECTION"**
-- Tagline: *"Chọn sức mạnh của bạn"*
+### Fonts (Google Fonts)
+- **Saira** 800–900 — display, tiêu đề, IN HOA, letter-spacing âm
+- **Be Vietnam Pro** 300–700 — body, chuẩn dấu tiếng Việt
+- **Space Mono** 400/700 — nhãn kỹ thuật, IN HOA, mono readouts
+
+### Color Tokens
+| Token | Giá trị | Dùng cho |
+|-------|---------|----------|
+| `--bg` | `#0B0D12` | Nền trang |
+| `--void` | `#06070A` | Nền sâu nhất |
+| `--surface-1` | `#111319` | Card background |
+| `--surface-2` | `#181B23` | Raised panels |
+| `--plasma` | `#FF2E43` | Accent chính (đỏ) |
+| `--volt` | `#15E0F0` | Accent phụ (cyan) |
+| `--hazard` | `#FFC23D` | Signal (vàng) |
+| `--ink-hi` | `#F3F5FB` | Heading text |
+| `--ink` | `#C8CDD9` | Body text |
+| `--ink-mid` | `#888FA0` | Secondary text |
+
+### 5 Mask Colors
+| Tên | Màu | Hex |
+|-----|-----|-----|
+| Inferno | Đỏ plasma | `#FF2E43` |
+| Aquarix | Cyan volt | `#15E0F0` |
+| Solaris | Vàng hazard | `#FFC23D` |
+| Verdex | Xanh lá | `#2CE08A` |
+| Phantex | Tím | `#9B6DFF` |
+
+### Effects
+- Glow plasma: `0 0 0 1px rgba(255,46,67,.35), 0 0 22px rgba(255,46,67,.40)`
+- Glow volt: `0 0 0 1px rgba(21,224,240,.35), 0 0 22px rgba(21,224,240,.38)`
+- Bevel clip: `clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)`
+- Grid overlay: `--grid` + `background-size: 56px 56px`
+- Inner sheen: `inset 0 1px 0 rgba(255,255,255,.06)`
+
+### Motion
+- `--ease-out: cubic-bezier(.2,.8,.2,1)`
+- `--ease-snap: cubic-bezier(.34,1.56,.64,1)`
+- Duration: 120ms / 200ms / 320ms / 520ms
+
+## Cấu trúc trang
+
+### 1. Nav (sticky)
+- Logo mark + "MẶT NẠ SIÊU NHÂN"
+- Links: Bộ sưu tập · Công nghệ · Câu chuyện
+- `backdrop-filter: blur(14px)`, nền `rgba(11,13,18,.72)`
+
+### 2. Hero Section
+- Grid kỹ thuật overlay mờ
+- Radial glow plasma + volt phía sau
+- Kicker: `// Bộ Sưu Tập Nguyên Tố` (Space Mono, plasma)
+- Title: **THỨC TỈNH SỨC MẠNH** (Saira 900, clamp 3rem→6.5rem)
+- Sub: 1 câu mô tả (Be Vietnam Pro, ink-mid)
 - Scroll-down indicator
 
-### 2. Intro Section
-- 1-2 câu mô tả bộ sưu tập
-- Animate fade-in khi scroll vào viewport
+### 3. Feature Strip
+- Marquee: "Hợp kim hàng không · LED phản ứng · In 3D thủ công · Phản quang ban đêm · Năng lượng niêm phong · Bảo hành trọn đời"
+- Space Mono, IN HOA, icon Lucide `zap`
 
-### 3. Mask Card Section (5 cards)
+### 4. Mask Cards (5 cards)
+- 3D viewer: React Three Fiber, TorusKnot placeholder, màu + emissive
+- Kicker Space Mono, Tên Saira 900, Tagline Be Vietnam Pro
+- Card: surface-1, bevel clip, hover glow theo màu mask, HUD tick corner
+- Grid: auto-fill minmax(280px, 1fr)
 
-Mỗi card hiển thị:
-- **3D viewer** — model mặt nạ xoay được bằng chuột/touch (React Three Fiber Canvas)
-- **Tên nhân vật** (bold, màu theo glow)
-- **Tagline** ngắn
-- **Glow border** theo màu riêng
-- Hover: card nâng lên (translateY), tăng glow intensity
+### 5. Footer
+- Nền `--void`, logo mark, tagline, copyright Space Mono
 
-| Màu | Tên | Màu glow | Tagline |
-|-----|-----|----------|---------|
-| Đỏ | **Inferno** | `#ff3333` | *Sức mạnh và lửa dũng cảm* |
-| Xanh dương | **Aquarix** | `#3399ff` | *Tốc độ băng và trí tuệ* |
-| Vàng | **Solaris** | `#ffcc00` | *Ánh sáng dẫn lối* |
-| Xanh lá | **Verdex** | `#33ff99` | *Bền bỉ như thiên nhiên* |
-| Tím | **Phantex** | `#cc33ff` | *Bí ẩn và tiên tri* |
-
-3D model: dùng geometry đơn giản (placeholder BoxGeometry hoặc SphereGeometry có màu) nếu chưa có file `.glb`. Thiết kế sẵn để swap vào model thật sau.
-
-### 4. Footer
-- Background tối
-- Text đơn giản: tên bộ sưu tập + năm
+## Copy Tone
+- Ngắn, mệnh lệnh, dứt khoát. IN HOA tiêu đề. Dùng `//`, `·`.
 
 ## File Structure
 ```
@@ -67,22 +101,20 @@ superhero-mask-landing/
 │   ├── page.tsx
 │   └── globals.css
 ├── components/
+│   ├── Nav.tsx
 │   ├── HeroSection.tsx
-│   ├── IntroSection.tsx
-│   ├── MaskCard.tsx        # card + 3D viewer
-│   ├── MaskViewer.tsx      # React Three Fiber canvas
+│   ├── FeatureStrip.tsx
+│   ├── MaskCard.tsx
+│   ├── MaskViewer.tsx
 │   └── Footer.tsx
 ├── data/
-│   └── masks.ts            # data 5 mặt nạ (tên, màu, tagline)
+│   └── masks.ts
+├── design-system/
+│   ├── styles.css
+│   ├── tokens/
+│   └── assets/
 ├── public/
-│   └── models/             # file .glb sau này
+│   └── logo-mark.svg
 ├── tailwind.config.ts
 └── package.json
 ```
-
-## Các quyết định thiết kế
-
-- **React Three Fiber** thay vì Three.js thuần — tích hợp tự nhiên với React/Next.js, quản lý lifecycle dễ hơn
-- **Placeholder geometry** cho 3D model — tránh phụ thuộc vào file `.glb` bên ngoài, dễ swap sau
-- **Framer Motion** cho scroll animation — nhẹ, API đơn giản với Next.js App Router
-- Không dùng backend, toàn bộ là static rendering
