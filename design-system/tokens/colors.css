@@ -1,0 +1,79 @@
+/* ============================================================
+   COLORS — obsidian dark base, plasma + volt energy accents
+   ============================================================ */
+:root {
+  /* ---- Obsidian background scale (deep → elevated) ---- */
+  --void:        #06070A;   /* deepest, page edge / behind-everything */
+  --bg:          #0B0D12;   /* base canvas */
+  --surface-1:   #111319;   /* cards, panels */
+  --surface-2:   #181B23;   /* raised panels, inputs */
+  --surface-3:   #21252F;   /* hover surface, overlay */
+  --surface-4:   #2C313D;   /* active / popover */
+
+  /* ---- Hairlines & borders (white at low alpha) ---- */
+  --line-faint:  rgba(255,255,255,.055);
+  --line:        rgba(255,255,255,.10);
+  --line-strong: rgba(255,255,255,.18);
+  --line-hot:    rgba(255,46,67,.45);   /* plasma-tinted edge */
+
+  /* ---- Text on dark ---- */
+  --ink-hi:      #F3F5FB;   /* headings, max contrast */
+  --ink:         #C8CDD9;   /* body */
+  --ink-mid:     #888FA0;   /* secondary / captions */
+  --ink-dim:     #565C6B;   /* disabled / faint meta */
+  --ink-onhot:   #0A0508;   /* text on plasma fills */
+
+  /* ---- PLASMA — primary energy accent (hero red) ---- */
+  --plasma-50:   #FFE3E6;
+  --plasma-300:  #FF8089;
+  --plasma:      #FF2E43;   /* primary */
+  --plasma-600:  #E51932;
+  --plasma-700:  #B30E22;
+  --plasma-soft: rgba(255,46,67,.14);   /* tint wash */
+
+  /* ---- VOLT — secondary energy accent (electric cyan) ---- */
+  --volt-300:    #8FF6FF;
+  --volt:        #15E0F0;
+  --volt-600:    #06B6C6;
+  --volt-soft:   rgba(21,224,240,.12);
+
+  /* ---- HAZARD — tertiary signal (voltage amber) ---- */
+  --hazard:      #FFC23D;
+  --hazard-soft: rgba(255,194,61,.14);
+
+  /* ---- CHROME — metallic mask surface ---- */
+  --chrome-hi:   #E7EAF2;
+  --chrome:      #AEB6C6;
+  --chrome-lo:   #6F7686;
+  --chrome-grad: linear-gradient(150deg,#EDEFF5 0%,#AEB6C6 38%,#5C6272 100%); /* @kind color */
+
+  /* ---- Status ---- */
+  --ok:          #2CE08A;
+  --ok-soft:     rgba(44,224,138,.14);
+  --warn:        var(--hazard);
+  --warn-soft:   var(--hazard-soft);
+  --danger:      var(--plasma);
+  --danger-soft: var(--plasma-soft);
+
+  /* ============================================================
+     SEMANTIC ALIASES — reach for these in components
+     ============================================================ */
+  --color-bg:            var(--bg);
+  --color-surface:       var(--surface-1);
+  --color-surface-raised:var(--surface-2);
+  --color-text:          var(--ink);
+  --color-heading:       var(--ink-hi);
+  --color-muted:         var(--ink-mid);
+  --color-border:        var(--line);
+
+  --accent:              var(--plasma);
+  --accent-hover:        var(--plasma-600);
+  --accent-press:        var(--plasma-700);
+  --accent-soft:         var(--plasma-soft);
+  --on-accent:           var(--ink-onhot);
+
+  --accent-2:            var(--volt);
+  --accent-2-soft:       var(--volt-soft);
+
+  --focus-ring:          var(--volt);
+}

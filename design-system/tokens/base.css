@@ -1,0 +1,56 @@
+/* ============================================================
+   BASE — element defaults built on the tokens
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: var(--lh-normal);
+  font-weight: var(--w-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--plasma); color: var(--ink-onhot); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink-hi);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  font-weight: var(--w-extra);
+  margin: 0 0 .5em;
+}
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); }
+
+p  { margin: 0 0 1em; text-wrap: pretty; }
+
+a  { color: var(--volt); text-decoration: none; }
+a:hover { color: var(--volt-300); }
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: .9em;
+  color: var(--volt-300);
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--space-6) 0; }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border: 3px solid var(--bg);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--surface-4); }
+
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-xs); }

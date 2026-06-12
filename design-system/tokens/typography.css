@@ -1,0 +1,76 @@
+/* ============================================================
+   TYPOGRAPHY — Saira (display) · Be Vietnam Pro (body) · Space Mono
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-display: "Saira", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body:    "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, "SF Mono", monospace;
+
+  /* ---- Weights ---- */
+  --w-regular: 400; /* @kind font */
+  --w-medium:  500; /* @kind font */
+  --w-semibold:600; /* @kind font */
+  --w-bold:    700; /* @kind font */
+  --w-extra:   800; /* @kind font */
+  --w-black:   900; /* @kind font */
+
+  /* ---- Type scale (fluid-ish, fixed px steps) ---- */
+  --t-hero:   clamp(3.5rem, 8vw, 7rem); /* @kind font */
+  --t-d1:     3.5rem;     /* 56 */
+  --t-d2:     2.75rem;    /* 44 */
+  --t-h1:     2.125rem;   /* 34 */
+  --t-h2:     1.625rem;   /* 26 */
+  --t-h3:     1.25rem;    /* 20 */
+  --t-lg:     1.125rem;   /* 18 */
+  --t-base:   1rem;       /* 16 */
+  --t-sm:     0.875rem;   /* 14 */
+  --t-xs:     0.75rem;    /* 12 */
+  --t-2xs:    0.6875rem;  /* 11 — micro labels */
+
+  /* ---- Line heights ---- */
+  --lh-tight:  0.95; /* @kind font */
+  --lh-snug:   1.12; /* @kind font */
+  --lh-normal: 1.55; /* @kind font */
+  --lh-relax:  1.7; /* @kind font */
+
+  /* ---- Letter spacing ---- */
+  --ls-mega:   -0.03em;  /* huge display, pull tight @kind font */
+  --ls-tight:  -0.01em; /* @kind font */
+  --ls-normal: 0em; /* @kind font */
+  --ls-wide:   0.06em;   /* kicker labels @kind font */
+  --ls-mono:   0.14em;   /* mono micro-labels, UPPERCASE @kind font */
+
+  /* ---- Semantic roles ---- */
+  --text-kicker-size: var(--t-2xs);
+  --text-body-size:   var(--t-base);
+  --text-caption-size:var(--t-sm);
+}
+
+/* Utility classes consumers / cards can use directly */
+.t-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-kicker-size);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.t-display {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  letter-spacing: var(--ls-mega);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+}
+.t-heading {
+  font-family: var(--font-display);
+  font-weight: var(--w-extra);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+.t-body {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-normal);
+}

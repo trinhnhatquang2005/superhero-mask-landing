@@ -1,0 +1,60 @@
+/* ============================================================
+   EFFECTS — elevation shadows, energy glows, motion, textures
+   ============================================================ */
+:root {
+  /* ---- Elevation (deep black drop shadows on dark) ---- */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-2: 0 4px 14px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.6);
+  --shadow-3: 0 12px 34px rgba(0,0,0,.55), 0 4px 10px rgba(0,0,0,.5);
+  --shadow-4: 0 28px 70px rgba(0,0,0,.65), 0 10px 24px rgba(0,0,0,.55);
+
+  /* ---- Energy glows (the signature move) ---- */
+  --glow-plasma:    0 0 0 1px rgba(255,46,67,.35), 0 0 22px rgba(255,46,67,.40);
+  --glow-plasma-lg: 0 0 0 1px rgba(255,46,67,.40), 0 0 48px rgba(255,46,67,.55);
+  --glow-volt:      0 0 0 1px rgba(21,224,240,.35), 0 0 22px rgba(21,224,240,.38);
+  --glow-volt-lg:   0 0 0 1px rgba(21,224,240,.40), 0 0 48px rgba(21,224,240,.50);
+
+  /* ---- Inner sheen (top hairlight on raised panels) ---- */
+  --sheen: inset 0 1px 0 rgba(255,255,255,.06); /* @kind shadow */
+
+  /* ---- Focus ring ---- */
+  --ring: 0 0 0 2px var(--void), 0 0 0 4px var(--volt);
+
+  /* ---- Motion — snappy, sci-fi ---- */
+  --ease-out:   cubic-bezier(.2,.8,.2,1); /* @kind other */
+  --ease-inout: cubic-bezier(.65,.05,.36,1); /* @kind other */
+  --ease-snap:  cubic-bezier(.34,1.56,.64,1); /* @kind other */
+  --dur-1: 120ms; /* @kind other */
+  --dur-2: 200ms; /* @kind other */
+  --dur-3: 320ms; /* @kind other */
+  --dur-4: 520ms; /* @kind other */
+
+  /* ---- Atmosphere fills (use sparingly behind heroes) ---- */
+  --grad-plasma:  linear-gradient(135deg, var(--plasma) 0%, var(--plasma-700) 100%); /* @kind color */
+  --grad-volt:    linear-gradient(135deg, var(--volt) 0%, var(--volt-600) 100%); /* @kind color */
+  --glow-bg-plasma: radial-gradient(60% 55% at 50% 0%, rgba(255,46,67,.22), transparent 70%); /* @kind color */
+  --glow-bg-volt:   radial-gradient(50% 50% at 80% 20%, rgba(21,224,240,.16), transparent 70%); /* @kind color */
+
+  /* Technical grid overlay — drop on a ::before, low opacity */
+  --grid: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); /* @kind other */
+  --grid-size: 56px 56px; /* @kind other */
+}
+
+/* ---- Reusable bevel clip (notched HUD corners) ---- */
+.bevel-clip {
+  clip-path: polygon(
+    var(--bevel) 0, 100% 0, 100% calc(100% - var(--bevel)),
+    calc(100% - var(--bevel)) 100%, 0 100%, 0 var(--bevel)
+  );
+}
+.bevel-clip-sm {
+  clip-path: polygon(
+    var(--bevel-sm) 0, 100% 0, 100% calc(100% - var(--bevel-sm)),
+    calc(100% - var(--bevel-sm)) 100%, 0 100%, 0 var(--bevel-sm)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
